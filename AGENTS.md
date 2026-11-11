@@ -28,3 +28,9 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+
+- Public PPDB content (waves, fees, requirements, news, contacts) lives in `src/data/ppdb.ts` until Cloud-backed content management exists; pages read only from there so one edit updates every page.
+- Wave open/closed status is computed from dates in WIB via `statusGelombang` in `src/lib/gelombang.ts` (tested); never hardcode a status.
+- Site header/footer are rendered once in `src/routes/__root.tsx`; pages render only their own content.

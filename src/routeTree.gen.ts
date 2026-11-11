@@ -10,33 +10,128 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AlurRouteImport } from './routes/alur'
+import { Route as BiayaRouteImport } from './routes/biaya'
+import { Route as KontakRouteImport } from './routes/kontak'
+import { Route as PersyaratanRouteImport } from './routes/persyaratan'
+import { Route as ProfilRouteImport } from './routes/profil'
+import { Route as BeritaIndexRouteImport } from './routes/berita.index'
+import { Route as BeritaSlugRouteImport } from './routes/berita.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AlurRoute = AlurRouteImport.update({
+  id: '/alur',
+  path: '/alur',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BiayaRoute = BiayaRouteImport.update({
+  id: '/biaya',
+  path: '/biaya',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KontakRoute = KontakRouteImport.update({
+  id: '/kontak',
+  path: '/kontak',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PersyaratanRoute = PersyaratanRouteImport.update({
+  id: '/persyaratan',
+  path: '/persyaratan',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfilRoute = ProfilRouteImport.update({
+  id: '/profil',
+  path: '/profil',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BeritaIndexRoute = BeritaIndexRouteImport.update({
+  id: '/berita/',
+  path: '/berita/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BeritaSlugRoute = BeritaSlugRouteImport.update({
+  id: '/berita/$slug',
+  path: '/berita/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/alur': typeof AlurRoute
+  '/biaya': typeof BiayaRoute
+  '/kontak': typeof KontakRoute
+  '/persyaratan': typeof PersyaratanRoute
+  '/profil': typeof ProfilRoute
+  '/berita/$slug': typeof BeritaSlugRoute
+  '/berita/': typeof BeritaIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/alur': typeof AlurRoute
+  '/biaya': typeof BiayaRoute
+  '/kontak': typeof KontakRoute
+  '/persyaratan': typeof PersyaratanRoute
+  '/profil': typeof ProfilRoute
+  '/berita/$slug': typeof BeritaSlugRoute
+  '/berita': typeof BeritaIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/alur': typeof AlurRoute
+  '/biaya': typeof BiayaRoute
+  '/kontak': typeof KontakRoute
+  '/persyaratan': typeof PersyaratanRoute
+  '/profil': typeof ProfilRoute
+  '/berita/$slug': typeof BeritaSlugRoute
+  '/berita/': typeof BeritaIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/alur'
+    | '/biaya'
+    | '/kontak'
+    | '/persyaratan'
+    | '/profil'
+    | '/berita/$slug'
+    | '/berita/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/alur'
+    | '/biaya'
+    | '/kontak'
+    | '/persyaratan'
+    | '/profil'
+    | '/berita/$slug'
+    | '/berita'
+  id:
+    | '__root__'
+    | '/'
+    | '/alur'
+    | '/biaya'
+    | '/kontak'
+    | '/persyaratan'
+    | '/profil'
+    | '/berita/$slug'
+    | '/berita/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AlurRoute: typeof AlurRoute
+  BiayaRoute: typeof BiayaRoute
+  KontakRoute: typeof KontakRoute
+  PersyaratanRoute: typeof PersyaratanRoute
+  ProfilRoute: typeof ProfilRoute
+  BeritaSlugRoute: typeof BeritaSlugRoute
+  BeritaIndexRoute: typeof BeritaIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +143,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/alur': {
+      id: '/alur'
+      path: '/alur'
+      fullPath: '/alur'
+      preLoaderRoute: typeof AlurRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/biaya': {
+      id: '/biaya'
+      path: '/biaya'
+      fullPath: '/biaya'
+      preLoaderRoute: typeof BiayaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kontak': {
+      id: '/kontak'
+      path: '/kontak'
+      fullPath: '/kontak'
+      preLoaderRoute: typeof KontakRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/persyaratan': {
+      id: '/persyaratan'
+      path: '/persyaratan'
+      fullPath: '/persyaratan'
+      preLoaderRoute: typeof PersyaratanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profil': {
+      id: '/profil'
+      path: '/profil'
+      fullPath: '/profil'
+      preLoaderRoute: typeof ProfilRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/berita/': {
+      id: '/berita/'
+      path: '/berita'
+      fullPath: '/berita/'
+      preLoaderRoute: typeof BeritaIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/berita/$slug': {
+      id: '/berita/$slug'
+      path: '/berita/$slug'
+      fullPath: '/berita/$slug'
+      preLoaderRoute: typeof BeritaSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AlurRoute: AlurRoute,
+  BiayaRoute: BiayaRoute,
+  KontakRoute: KontakRoute,
+  PersyaratanRoute: PersyaratanRoute,
+  ProfilRoute: ProfilRoute,
+  BeritaSlugRoute: BeritaSlugRoute,
+  BeritaIndexRoute: BeritaIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
