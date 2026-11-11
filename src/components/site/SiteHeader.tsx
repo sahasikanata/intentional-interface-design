@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { gelombang, kontak, waLink, TAHUN_AJARAN } from "@/data/ppdb";
+import { gelombang, panitiaUtama, waLink, TAHUN_AJARAN } from "@/data/ppdb";
 import { statusGelombang, tanggalPendek } from "@/lib/gelombang";
 
 const nav = [
@@ -31,8 +31,8 @@ export function SiteHeader() {
               </>
             ) : null}
           </span>
-          <a href={waLink(kontak.panitia[0].wa)} target="_blank" rel="noreferrer" className="hidden shrink-0 link-quiet sm:inline">
-            WA Panitia {kontak.panitia[0].tampil}
+          <a href={waLink(panitiaUtama.wa)} target="_blank" rel="noreferrer" className="hidden shrink-0 link-quiet sm:inline">
+            WA Panitia {panitiaUtama.tampil}
           </a>
         </div>
       </div>

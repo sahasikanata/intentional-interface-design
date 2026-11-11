@@ -15,6 +15,8 @@ export const kontak = {
   ],
 };
 
+export const panitiaUtama = kontak.panitia[0]!;
+
 export const waLink = (nomor: string, pesan = "Assalamu'alaikum, saya ingin bertanya tentang PPDB Bina Insani.") =>
   `https://wa.me/${nomor}?text=${encodeURIComponent(pesan)}`;
 

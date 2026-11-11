@@ -27,12 +27,12 @@ const bulanPanjang = [
 ];
 
 export function tanggalPendek(iso: string) {
-  const [y, m, d] = iso.split("-").map(Number);
+  const [y, m = 1, d] = iso.split("-").map(Number);
   return `${d} ${bulan[m - 1]} ${y}`;
 }
 
 export function tanggalPanjang(iso: string) {
-  const [y, m, d] = iso.split("-").map(Number);
+  const [y, m = 1, d] = iso.split("-").map(Number);
   return `${d} ${bulanPanjang[m - 1]} ${y}`;
 }
 

@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { GelombangTable } from "@/components/site/GelombangTable";
-import { alur, berita, kontak, waLink, TAHUN_AJARAN } from "@/data/ppdb";
+import { alur, berita, panitiaUtama, waLink, TAHUN_AJARAN } from "@/data/ppdb";
 import { tanggalPendek } from "@/lib/gelombang";
 import halaman from "@/assets/pondok-halaman.jpg";
 import mengaji from "@/assets/santri-mengaji.jpg";
@@ -51,7 +51,7 @@ function Beranda() {
               </Link>
             </Button>
             <Button asChild variant="link" size="inline">
-              <a href={waLink(kontak.panitia[0].wa)} target="_blank" rel="noreferrer">
+              <a href={waLink(panitiaUtama.wa)} target="_blank" rel="noreferrer">
                 Tanya panitia lewat WhatsApp
               </a>
             </Button>
