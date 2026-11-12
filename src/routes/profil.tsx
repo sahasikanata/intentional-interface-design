@@ -61,7 +61,7 @@ function Profil() {
           <table className="w-full border-collapse">
             <tbody>
               {jadwalHarian.map((j) => (
-                <tr key={j.jam} className="border-b border-border first:border-t">
+                <tr key={j.jam} className="border-b border-border">
                   <td className="w-28 py-4 align-baseline font-mono text-lg text-primary">{j.jam}</td>
                   <td className="py-4 align-baseline text-lg">{j.kegiatan}</td>
                 </tr>

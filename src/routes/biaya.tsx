@@ -32,12 +32,12 @@ function Biaya() {
         <div className="grid border-y border-foreground/80 md:grid-cols-2">
           <div className="py-10 md:border-r md:border-border md:pr-10">
             <p className="eyebrow text-muted-foreground">Tahap 1–6 · Pendaftaran s.d. pengumuman</p>
-            <p className="mt-6 font-display-tight text-7xl md:text-8xl">Rp0</p>
+            <p className="mt-6 font-display-tight text-6xl lg:text-7xl">Rp0</p>
             <p className="mt-4 text-muted-foreground">Akun, formulir, unggah berkas, verifikasi, dan seleksi.</p>
           </div>
           <div className="border-t border-border py-10 md:border-t-0 md:pl-10">
             <p className="eyebrow text-muted-foreground">Tahap 7 · Daftar ulang (hanya jika diterima)</p>
-            <p className="mt-6 font-display-tight text-7xl text-primary md:text-8xl">{rupiah(total)}</p>
+            <p className="mt-6 font-display-tight text-6xl text-primary lg:text-7xl">{rupiah(total)}</p>
             <p className="mt-4 text-muted-foreground">Dibayar sekali di awal, secara daring melalui akun.</p>
           </div>
         </div>
@@ -48,7 +48,7 @@ function Biaya() {
           <table className="w-full border-collapse">
             <tbody>
               {biayaDaftarUlang.map((b) => (
-                <tr key={b.item} className="border-b border-border first:border-t">
+                <tr key={b.item} className="border-b border-border">
                   <td className="py-5 pr-4 text-lg">{b.item}</td>
                   <td className="py-5 text-right font-mono">{rupiah(b.jumlah)}</td>
                 </tr>
