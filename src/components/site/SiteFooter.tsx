@@ -3,7 +3,7 @@ import { kontak, waLink } from "@/data/ppdb";
 
 export function SiteFooter() {
   return (
-    <footer className="mt-32 bg-ink text-ink-foreground">
+    <footer className="mt-32 bg-ink text-ink-foreground print:hidden">
       <div className="container-page grid gap-12 py-16 md:grid-cols-12">
         <div className="md:col-span-5">
           <p dir="rtl" lang="ar" className="font-arabic text-4xl leading-snug text-sand">

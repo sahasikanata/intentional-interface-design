@@ -1,5 +1,4 @@
-import type { Gelombang } from "@/lib/gelombang";
-
+// Gelombang dan jenis berkas kini tersimpan di database.
 // NOTE: Semua tanggal, biaya, kontak dan berita di bawah ini adalah contoh
 // dan perlu diganti dengan data resmi dari panitia.
 
@@ -20,12 +19,6 @@ export const panitiaUtama = kontak.panitia[0]!;
 export const waLink = (nomor: string, pesan = "Assalamu'alaikum, saya ingin bertanya tentang PPDB Bina Insani.") =>
   `https://wa.me/${nomor}?text=${encodeURIComponent(pesan)}`;
 
-export const gelombang: Gelombang[] = [
-  { nama: "Gelombang I", mulai: "2026-11-01", selesai: "2026-12-31", kuota: 40, seleksi: "2027-01-09", pengumuman: "2027-01-16" },
-  { nama: "Gelombang II", mulai: "2027-01-18", selesai: "2027-03-14", kuota: 35, seleksi: "2027-03-20", pengumuman: "2027-03-27" },
-  { nama: "Gelombang III", mulai: "2027-04-05", selesai: "2027-06-13", kuota: 25, seleksi: "2027-06-19", pengumuman: "2027-06-26" },
-];
-
 export const alur = [
   { judul: "Buat akun", isi: "Isi nama, email aktif, dan nomor WhatsApp. Satu akun untuk satu calon santri." },
   { judul: "Isi formulir", isi: "Pilih gelombang yang sedang dibuka, lalu lengkapi biodata, data kampus, dan kontak orang tua atau wali. Formulir bisa disimpan sebagai draf." },
@@ -41,14 +34,6 @@ export const komponenSeleksi = [
   { nama: "Tes membaca Al-Qur'an", bobot: 40, ket: "Tajwid, makharijul huruf, dan kelancaran." },
   { nama: "Tes tertulis", bobot: 30, ket: "Pengetahuan dasar keislaman dan bahasa Arab." },
   { nama: "Wawancara", bobot: 30, ket: "Motivasi mondok, kesiapan membagi waktu kuliah, dan dukungan keluarga." },
-];
-
-export const berkas = [
-  { nama: "Kartu Tanda Penduduk (KTP)", format: "PDF / JPG", maks: "2 MB", wajib: true },
-  { nama: "Kartu Tanda Mahasiswa atau surat keterangan aktif kuliah", format: "PDF / JPG", maks: "2 MB", wajib: true },
-  { nama: "Pas foto 3×4, latar polos, berpakaian rapi", format: "JPG / PNG", maks: "1 MB", wajib: true },
-  { nama: "Kartu Keluarga", format: "PDF / JPG", maks: "2 MB", wajib: true },
-  { nama: "Sertifikat tahfidz atau prestasi", format: "PDF", maks: "2 MB", wajib: false },
 ];
 
 export const dataFormulir = [

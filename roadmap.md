@@ -1,7 +1,7 @@
 # Roadmap — PPDB Bina Insani
 
 - [x] Tahap 1: Situs informasi publik (beranda, profil, alur & jadwal, persyaratan, biaya, berita, kontak)
-- [ ] Tahap 2: Akun calon santri (daftar, masuk, lupa sandi), formulir pendaftaran + draf, nomor pendaftaran, unggah berkas, halaman status
+- [ ] Tahap 2 (sedang dikerjakan): Akun calon santri (daftar, masuk, lupa sandi), formulir pendaftaran + draf, nomor pendaftaran, unggah berkas, halaman status
 - [ ] Tahap 3: Panel panitia — daftar pendaftar, filter/cari, verifikasi berkas, catatan perbaikan
 - [ ] Tahap 4: Seleksi — komponen & bobot, jadwal, kartu peserta, input nilai, peringkat, pengesahan pimpinan, pengumuman
 - [ ] Tahap 5: Daftar ulang & pembayaran daring, kuitansi, koreksi manual

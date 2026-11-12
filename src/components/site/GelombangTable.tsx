@@ -1,4 +1,5 @@
-import { gelombang } from "@/data/ppdb";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { gelombangQuery, toGelombang } from "@/lib/ppdb-queries";
 import { statusGelombang, tanggalPendek, type GelombangStatus } from "@/lib/gelombang";
 import { cn } from "@/lib/utils";
 
@@ -24,6 +25,8 @@ export function StatusBadge({ status }: { status: GelombangStatus }) {
 }
 
 export function GelombangTable({ detail = false }: { detail?: boolean }) {
+  const { data } = useSuspenseQuery(gelombangQuery);
+  const gelombang = data.map(toGelombang);
   return (
     <div className="overflow-x-auto">
       <table className="w-full min-w-[640px] border-collapse text-left">
@@ -46,8 +49,8 @@ export function GelombangTable({ detail = false }: { detail?: boolean }) {
                 <td className="py-5 pr-4 font-mono text-sm">
                   {tanggalPendek(g.mulai)} — {tanggalPendek(g.selesai)}
                 </td>
-                {detail ? <td className="py-5 pr-4 font-mono text-sm">{tanggalPendek(g.seleksi)}</td> : null}
-                {detail ? <td className="py-5 pr-4 font-mono text-sm">{tanggalPendek(g.pengumuman)}</td> : null}
+                {detail ? <td className="py-5 pr-4 font-mono text-sm">{g.seleksi ? tanggalPendek(g.seleksi) : "—"}</td> : null}
+                {detail ? <td className="py-5 pr-4 font-mono text-sm">{g.pengumuman ? tanggalPendek(g.pengumuman) : "—"}</td> : null}
                 <td className="py-5 pr-4 text-right font-mono text-sm">{g.kuota} santri</td>
                 <td className="py-5 text-right">
                   <StatusBadge status={s} />

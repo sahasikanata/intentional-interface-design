@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Check } from "lucide-react";
 import { PageIntro, Ledger } from "@/components/site/PageIntro";
-import { berkas, dataFormulir } from "@/data/ppdb";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { dataFormulir } from "@/data/ppdb";
+import { formatBytes, formatMime, jenisBerkasQuery } from "@/lib/ppdb-queries";
 
 export const Route = createFileRoute("/persyaratan")({
   head: () => ({
@@ -14,10 +16,12 @@ export const Route = createFileRoute("/persyaratan")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
+  loader: ({ context }) => context.queryClient.ensureQueryData(jenisBerkasQuery),
   component: Persyaratan,
 });
 
 function Persyaratan() {
+  const { data: berkas } = useSuspenseQuery(jenisBerkasQuery);
   return (
     <>
       <PageIntro
@@ -41,10 +45,13 @@ function Persyaratan() {
               </thead>
               <tbody>
                 {berkas.map((b) => (
-                  <tr key={b.nama} className="border-b border-border">
-                    <td className="py-5 pr-4 text-lg leading-snug">{b.nama}</td>
-                    <td className="py-5 pr-4 font-mono text-sm">{b.format}</td>
-                    <td className="py-5 pr-4 font-mono text-sm">{b.maks}</td>
+                  <tr key={b.kode} className="border-b border-border">
+                    <td className="py-5 pr-4 text-lg leading-snug">
+                      {b.nama}
+                      {b.keterangan ? <span className="block text-sm text-muted-foreground">{b.keterangan}</span> : null}
+                    </td>
+                    <td className="py-5 pr-4 font-mono text-sm">{formatMime(b.mime_types)}</td>
+                    <td className="py-5 pr-4 font-mono text-sm">{formatBytes(b.maks_bytes)}</td>
                     <td className="py-5 text-right eyebrow">
                       {b.wajib ? <span className="text-primary">Wajib</span> : <span className="text-muted-foreground">Opsional</span>}
                     </td>

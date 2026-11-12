@@ -2,8 +2,11 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { gelombang, panitiaUtama, waLink, TAHUN_AJARAN } from "@/data/ppdb";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { panitiaUtama, waLink, TAHUN_AJARAN } from "@/data/ppdb";
 import { statusGelombang, tanggalPendek } from "@/lib/gelombang";
+import { gelombangQuery, toGelombang } from "@/lib/ppdb-queries";
+import { useAuth } from "@/lib/auth";
 
 const nav = [
   { to: "/profil", label: "Profil" },
@@ -16,10 +19,12 @@ const nav = [
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
-  const aktif = gelombang.find((g) => statusGelombang(g) === "Dibuka");
+  const { data } = useSuspenseQuery(gelombangQuery);
+  const aktif = data.map(toGelombang).find((g) => statusGelombang(g) === "Dibuka");
+  const { session } = useAuth();
 
   return (
-    <header className="relative z-40">
+    <header className="relative z-40 print:hidden">
       <div className="bg-ink text-ink-foreground">
         <div className="container-page flex h-9 items-center justify-between gap-4 eyebrow">
           <span className="truncate">
@@ -57,10 +62,21 @@ export function SiteHeader() {
             ))}
           </nav>
 
-          <div className="hidden lg:block">
-            <Button asChild size="sm">
-              <Link to="/alur">Cara mendaftar</Link>
-            </Button>
+          <div className="hidden items-center gap-5 lg:flex">
+            {session ? (
+              <Button asChild size="sm">
+                <Link to="/akun">Akun saya</Link>
+              </Button>
+            ) : (
+              <>
+                <Link to="/masuk" className="text-[0.92rem] link-quiet">
+                  Masuk
+                </Link>
+                <Button asChild size="sm">
+                  <Link to="/daftar">Daftar akun</Link>
+                </Button>
+              </>
+            )}
           </div>
 
           <button
@@ -85,6 +101,22 @@ export function SiteHeader() {
                   </Link>
                 </li>
               ))}
+              <li className="flex gap-3 py-5">
+                {session ? (
+                  <Button asChild className="flex-1">
+                    <Link to="/akun" onClick={() => setOpen(false)}>Akun saya</Link>
+                  </Button>
+                ) : (
+                  <>
+                    <Button asChild variant="outline" className="flex-1">
+                      <Link to="/masuk" onClick={() => setOpen(false)}>Masuk</Link>
+                    </Button>
+                    <Button asChild className="flex-1">
+                      <Link to="/daftar" onClick={() => setOpen(false)}>Daftar akun</Link>
+                    </Button>
+                  </>
+                )}
+              </li>
             </ul>
           </nav>
         ) : null}
