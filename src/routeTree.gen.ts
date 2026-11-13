@@ -10,17 +10,29 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AlurRouteImport } from './routes/alur'
 import { Route as BiayaRouteImport } from './routes/biaya'
+import { Route as DaftarRouteImport } from './routes/daftar'
 import { Route as KontakRouteImport } from './routes/kontak'
+import { Route as LupaSandiRouteImport } from './routes/lupa-sandi'
+import { Route as MasukRouteImport } from './routes/masuk'
 import { Route as PersyaratanRouteImport } from './routes/persyaratan'
 import { Route as ProfilRouteImport } from './routes/profil'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as AuthenticatedAkunRouteImport } from './routes/_authenticated/akun'
 import { Route as BeritaIndexRouteImport } from './routes/berita.index'
 import { Route as BeritaSlugRouteImport } from './routes/berita.$slug'
+import { Route as AuthenticatedAkunIndexRouteImport } from './routes/_authenticated/akun.index'
+import { Route as AuthenticatedAkunFormulirRouteImport } from './routes/_authenticated/akun.formulir'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AlurRoute = AlurRouteImport.update({
@@ -33,9 +45,24 @@ const BiayaRoute = BiayaRouteImport.update({
   path: '/biaya',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DaftarRoute = DaftarRouteImport.update({
+  id: '/daftar',
+  path: '/daftar',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const KontakRoute = KontakRouteImport.update({
   id: '/kontak',
   path: '/kontak',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LupaSandiRoute = LupaSandiRouteImport.update({
+  id: '/lupa-sandi',
+  path: '/lupa-sandi',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MasukRoute = MasukRouteImport.update({
+  id: '/masuk',
+  path: '/masuk',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PersyaratanRoute = PersyaratanRouteImport.update({
@@ -48,6 +75,16 @@ const ProfilRoute = ProfilRouteImport.update({
   path: '/profil',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedAkunRoute = AuthenticatedAkunRouteImport.update({
+  id: '/akun',
+  path: '/akun',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const BeritaIndexRoute = BeritaIndexRouteImport.update({
   id: '/berita/',
   path: '/berita/',
@@ -58,37 +95,69 @@ const BeritaSlugRoute = BeritaSlugRouteImport.update({
   path: '/berita/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAkunIndexRoute = AuthenticatedAkunIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthenticatedAkunRoute,
+} as any)
+const AuthenticatedAkunFormulirRoute =
+  AuthenticatedAkunFormulirRouteImport.update({
+    id: '/formulir',
+    path: '/formulir',
+    getParentRoute: () => AuthenticatedAkunRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/alur': typeof AlurRoute
   '/biaya': typeof BiayaRoute
+  '/daftar': typeof DaftarRoute
   '/kontak': typeof KontakRoute
+  '/lupa-sandi': typeof LupaSandiRoute
+  '/masuk': typeof MasukRoute
   '/persyaratan': typeof PersyaratanRoute
   '/profil': typeof ProfilRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/akun': typeof AuthenticatedAkunRouteWithChildren
   '/berita/$slug': typeof BeritaSlugRoute
   '/berita/': typeof BeritaIndexRoute
+  '/akun/formulir': typeof AuthenticatedAkunFormulirRoute
+  '/akun/': typeof AuthenticatedAkunIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/alur': typeof AlurRoute
   '/biaya': typeof BiayaRoute
+  '/daftar': typeof DaftarRoute
   '/kontak': typeof KontakRoute
+  '/lupa-sandi': typeof LupaSandiRoute
+  '/masuk': typeof MasukRoute
   '/persyaratan': typeof PersyaratanRoute
   '/profil': typeof ProfilRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/berita/$slug': typeof BeritaSlugRoute
   '/berita': typeof BeritaIndexRoute
+  '/akun/formulir': typeof AuthenticatedAkunFormulirRoute
+  '/akun': typeof AuthenticatedAkunIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/alur': typeof AlurRoute
   '/biaya': typeof BiayaRoute
+  '/daftar': typeof DaftarRoute
   '/kontak': typeof KontakRoute
+  '/lupa-sandi': typeof LupaSandiRoute
+  '/masuk': typeof MasukRoute
   '/persyaratan': typeof PersyaratanRoute
   '/profil': typeof ProfilRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/_authenticated/akun': typeof AuthenticatedAkunRouteWithChildren
   '/berita/$slug': typeof BeritaSlugRoute
   '/berita/': typeof BeritaIndexRoute
+  '/_authenticated/akun/formulir': typeof AuthenticatedAkunFormulirRoute
+  '/_authenticated/akun/': typeof AuthenticatedAkunIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -96,40 +165,66 @@ export interface FileRouteTypes {
     | '/'
     | '/alur'
     | '/biaya'
+    | '/daftar'
     | '/kontak'
+    | '/lupa-sandi'
+    | '/masuk'
     | '/persyaratan'
     | '/profil'
+    | '/reset-password'
+    | '/akun'
     | '/berita/$slug'
     | '/berita/'
+    | '/akun/formulir'
+    | '/akun/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/alur'
     | '/biaya'
+    | '/daftar'
     | '/kontak'
+    | '/lupa-sandi'
+    | '/masuk'
     | '/persyaratan'
     | '/profil'
+    | '/reset-password'
     | '/berita/$slug'
     | '/berita'
+    | '/akun/formulir'
+    | '/akun'
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
     | '/alur'
     | '/biaya'
+    | '/daftar'
     | '/kontak'
+    | '/lupa-sandi'
+    | '/masuk'
     | '/persyaratan'
     | '/profil'
+    | '/reset-password'
+    | '/_authenticated/akun'
     | '/berita/$slug'
     | '/berita/'
+    | '/_authenticated/akun/formulir'
+    | '/_authenticated/akun/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AlurRoute: typeof AlurRoute
   BiayaRoute: typeof BiayaRoute
+  DaftarRoute: typeof DaftarRoute
   KontakRoute: typeof KontakRoute
+  LupaSandiRoute: typeof LupaSandiRoute
+  MasukRoute: typeof MasukRoute
   PersyaratanRoute: typeof PersyaratanRoute
   ProfilRoute: typeof ProfilRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
   BeritaSlugRoute: typeof BeritaSlugRoute
   BeritaIndexRoute: typeof BeritaIndexRoute
 }
@@ -141,6 +236,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/alur': {
@@ -157,11 +259,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BiayaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/daftar': {
+      id: '/daftar'
+      path: '/daftar'
+      fullPath: '/daftar'
+      preLoaderRoute: typeof DaftarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/kontak': {
       id: '/kontak'
       path: '/kontak'
       fullPath: '/kontak'
       preLoaderRoute: typeof KontakRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lupa-sandi': {
+      id: '/lupa-sandi'
+      path: '/lupa-sandi'
+      fullPath: '/lupa-sandi'
+      preLoaderRoute: typeof LupaSandiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/masuk': {
+      id: '/masuk'
+      path: '/masuk'
+      fullPath: '/masuk'
+      preLoaderRoute: typeof MasukRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/persyaratan': {
@@ -178,6 +301,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProfilRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/akun': {
+      id: '/_authenticated/akun'
+      path: '/akun'
+      fullPath: '/akun'
+      preLoaderRoute: typeof AuthenticatedAkunRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/berita/': {
       id: '/berita/'
       path: '/berita'
@@ -192,16 +329,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BeritaSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/akun/': {
+      id: '/_authenticated/akun/'
+      path: '/'
+      fullPath: '/akun/'
+      preLoaderRoute: typeof AuthenticatedAkunIndexRouteImport
+      parentRoute: typeof AuthenticatedAkunRoute
+    }
+    '/_authenticated/akun/formulir': {
+      id: '/_authenticated/akun/formulir'
+      path: '/formulir'
+      fullPath: '/akun/formulir'
+      preLoaderRoute: typeof AuthenticatedAkunFormulirRouteImport
+      parentRoute: typeof AuthenticatedAkunRoute
+    }
   }
 }
 
+interface AuthenticatedAkunRouteChildren {
+  AuthenticatedAkunFormulirRoute: typeof AuthenticatedAkunFormulirRoute
+  AuthenticatedAkunIndexRoute: typeof AuthenticatedAkunIndexRoute
+}
+
+const AuthenticatedAkunRouteChildren: AuthenticatedAkunRouteChildren = {
+  AuthenticatedAkunFormulirRoute: AuthenticatedAkunFormulirRoute,
+  AuthenticatedAkunIndexRoute: AuthenticatedAkunIndexRoute,
+}
+
+const AuthenticatedAkunRouteWithChildren =
+  AuthenticatedAkunRoute._addFileChildren(AuthenticatedAkunRouteChildren)
+
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAkunRoute: typeof AuthenticatedAkunRouteWithChildren
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAkunRoute: AuthenticatedAkunRouteWithChildren,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AlurRoute: AlurRoute,
   BiayaRoute: BiayaRoute,
+  DaftarRoute: DaftarRoute,
   KontakRoute: KontakRoute,
+  LupaSandiRoute: LupaSandiRoute,
+  MasukRoute: MasukRoute,
   PersyaratanRoute: PersyaratanRoute,
   ProfilRoute: ProfilRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
   BeritaSlugRoute: BeritaSlugRoute,
   BeritaIndexRoute: BeritaIndexRoute,
 }
