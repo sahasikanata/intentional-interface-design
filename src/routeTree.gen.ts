@@ -24,6 +24,7 @@ import { Route as AuthenticatedAkunRouteImport } from './routes/_authenticated/a
 import { Route as BeritaIndexRouteImport } from './routes/berita.index'
 import { Route as BeritaSlugRouteImport } from './routes/berita.$slug'
 import { Route as AuthenticatedAkunIndexRouteImport } from './routes/_authenticated/akun.index'
+import { Route as AuthenticatedAkunBerkasRouteImport } from './routes/_authenticated/akun.berkas'
 import { Route as AuthenticatedAkunFormulirRouteImport } from './routes/_authenticated/akun.formulir'
 
 const IndexRoute = IndexRouteImport.update({
@@ -100,6 +101,11 @@ const AuthenticatedAkunIndexRoute = AuthenticatedAkunIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AuthenticatedAkunRoute,
 } as any)
+const AuthenticatedAkunBerkasRoute = AuthenticatedAkunBerkasRouteImport.update({
+  id: '/berkas',
+  path: '/berkas',
+  getParentRoute: () => AuthenticatedAkunRoute,
+} as any)
 const AuthenticatedAkunFormulirRoute =
   AuthenticatedAkunFormulirRouteImport.update({
     id: '/formulir',
@@ -121,6 +127,7 @@ export interface FileRoutesByFullPath {
   '/akun': typeof AuthenticatedAkunRouteWithChildren
   '/berita/$slug': typeof BeritaSlugRoute
   '/berita/': typeof BeritaIndexRoute
+  '/akun/berkas': typeof AuthenticatedAkunBerkasRoute
   '/akun/formulir': typeof AuthenticatedAkunFormulirRoute
   '/akun/': typeof AuthenticatedAkunIndexRoute
 }
@@ -137,6 +144,7 @@ export interface FileRoutesByTo {
   '/reset-password': typeof ResetPasswordRoute
   '/berita/$slug': typeof BeritaSlugRoute
   '/berita': typeof BeritaIndexRoute
+  '/akun/berkas': typeof AuthenticatedAkunBerkasRoute
   '/akun/formulir': typeof AuthenticatedAkunFormulirRoute
   '/akun': typeof AuthenticatedAkunIndexRoute
 }
@@ -156,6 +164,7 @@ export interface FileRoutesById {
   '/_authenticated/akun': typeof AuthenticatedAkunRouteWithChildren
   '/berita/$slug': typeof BeritaSlugRoute
   '/berita/': typeof BeritaIndexRoute
+  '/_authenticated/akun/berkas': typeof AuthenticatedAkunBerkasRoute
   '/_authenticated/akun/formulir': typeof AuthenticatedAkunFormulirRoute
   '/_authenticated/akun/': typeof AuthenticatedAkunIndexRoute
 }
@@ -175,6 +184,7 @@ export interface FileRouteTypes {
     | '/akun'
     | '/berita/$slug'
     | '/berita/'
+    | '/akun/berkas'
     | '/akun/formulir'
     | '/akun/'
   fileRoutesByTo: FileRoutesByTo
@@ -191,6 +201,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/berita/$slug'
     | '/berita'
+    | '/akun/berkas'
     | '/akun/formulir'
     | '/akun'
   id:
@@ -209,6 +220,7 @@ export interface FileRouteTypes {
     | '/_authenticated/akun'
     | '/berita/$slug'
     | '/berita/'
+    | '/_authenticated/akun/berkas'
     | '/_authenticated/akun/formulir'
     | '/_authenticated/akun/'
   fileRoutesById: FileRoutesById
@@ -336,6 +348,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAkunIndexRouteImport
       parentRoute: typeof AuthenticatedAkunRoute
     }
+    '/_authenticated/akun/berkas': {
+      id: '/_authenticated/akun/berkas'
+      path: '/berkas'
+      fullPath: '/akun/berkas'
+      preLoaderRoute: typeof AuthenticatedAkunBerkasRouteImport
+      parentRoute: typeof AuthenticatedAkunRoute
+    }
     '/_authenticated/akun/formulir': {
       id: '/_authenticated/akun/formulir'
       path: '/formulir'
@@ -347,11 +366,13 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedAkunRouteChildren {
+  AuthenticatedAkunBerkasRoute: typeof AuthenticatedAkunBerkasRoute
   AuthenticatedAkunFormulirRoute: typeof AuthenticatedAkunFormulirRoute
   AuthenticatedAkunIndexRoute: typeof AuthenticatedAkunIndexRoute
 }
 
 const AuthenticatedAkunRouteChildren: AuthenticatedAkunRouteChildren = {
+  AuthenticatedAkunBerkasRoute: AuthenticatedAkunBerkasRoute,
   AuthenticatedAkunFormulirRoute: AuthenticatedAkunFormulirRoute,
   AuthenticatedAkunIndexRoute: AuthenticatedAkunIndexRoute,
 }

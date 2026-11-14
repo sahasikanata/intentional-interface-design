@@ -57,8 +57,8 @@ function ResetPassword() {
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
     setError(null);
-    if (password.length < 8) return setError("Kata sandi minimal 8 karakter.");
-    if (password !== konfirmasi) return setError("Kata sandi tidak sama.");
+    if (password.length < 8) { setError("Kata sandi minimal 8 karakter."); return; }
+    if (password !== konfirmasi) { setError("Kata sandi tidak sama."); return; }
     setBusy(true);
     const { error } = await supabase.auth.updateUser({ password });
     setBusy(false);

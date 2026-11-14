@@ -6,8 +6,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { amanRedirect, useAuth } from "@/lib/auth";
 
 export const Route = createFileRoute("/masuk")({
-  validateSearch: (s: Record<string, unknown>): { redirect?: string } => ({
-    redirect: typeof s.redirect === "string" ? s.redirect : undefined,
+  validateSearch: (s: Record<string, unknown>): { redirect?: string | undefined } => ({
+    redirect: typeof s["redirect"] === "string" ? s["redirect"] : undefined,
   }),
   head: () => ({
     meta: [

@@ -31,6 +31,10 @@ use the editor.
 
 ## Project rules
 
-- Public PPDB content (waves, fees, requirements, news, contacts) lives in `src/data/ppdb.ts` until Cloud-backed content management exists; pages read only from there so one edit updates every page.
-- Wave open/closed status is computed from dates in WIB via `statusGelombang` in `src/lib/gelombang.ts` (tested); never hardcode a status.
+- Waves (`gelombang`) and document requirements (`jenis_berkas`) live in the database and are read publicly via `src/lib/ppdb-public.functions.ts`; remaining static copy (fees, news, contacts) stays in `src/data/ppdb.ts` until panitia content management exists.
+- Wave open/closed status is computed from dates in WIB (`statusGelombang` in the UI, `gelombang_dibuka()` in the DB); never hardcode a status.
 - Site header/footer are rendered once in `src/routes/__root.tsx`; pages render only their own content.
+- Applicant workflow rules are enforced in Postgres (triggers on `pendaftaran`/`berkas_pendaftaran`, RPC `ajukan_pendaftaran`); the UI mirrors them in `src/lib/pendaftaran-rules.ts` only for feedback. Applicants can never change status/nomor/catatan directly.
+- Roles live in `user_roles` (`calon_santri`, `panitia`, `pimpinan`, `super_admin`) checked via `has_role`/`is_staff`; never store roles on profiles.
+- Applicant files go to private bucket `berkas-pendaftaran` at `<user_id>/<pendaftaran_id>/<kode>-<timestamp>.<ext>`; the DB trigger validates type/size from storage metadata.
+- Signed-in pages live under `src/routes/_authenticated/` (client-only gate redirecting to `/masuk`); one auth listener lives in `AuthProvider` (`src/lib/auth.tsx`).

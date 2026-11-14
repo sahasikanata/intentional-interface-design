@@ -45,6 +45,8 @@ function Daftar() {
     });
     if (error) {
       if (/already registered|already exists/i.test(error.message)) setError("Email ini sudah terdaftar. Silakan masuk.");
+      else if (/not allowed|invalid.*email|email.*invalid/i.test(error.message))
+        setError("Alamat email ini tidak dapat menerima email. Periksa kembali penulisannya.");
       else if (/rate limit/i.test(error.message)) setError("Terlalu banyak percobaan. Coba lagi beberapa menit lagi.");
       else if (/weak|pwned|leaked/i.test(error.message)) setError("Kata sandi terlalu mudah ditebak. Gunakan kombinasi lain.");
       else setError("Pendaftaran akun gagal. Coba lagi.");

@@ -8,6 +8,13 @@
       "when": 1794451320826,
       "tag": "0000_ppdb_tahap2_akun_pendaftaran_berkas",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1794656471407,
+      "tag": "0001_fix_ajukan_pendaftaran_daftar_kurang",
+      "breakpoints": true
     }
   ]
 }

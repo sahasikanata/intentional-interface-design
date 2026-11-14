@@ -110,7 +110,7 @@ export const isianWajib: { key: keyof FormulirValues; label: string }[] = [
   { key: "wali_telepon", label: "Telepon wali" },
 ];
 
-type IsianLike = Record<string, string | number | null | undefined>;
+type IsianLike = Record<string, unknown>;
 
 /** Required fields still empty — mirrors the server-side check in ajukan_pendaftaran. */
 export function isianKurang(p: IsianLike) {
