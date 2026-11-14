@@ -68,6 +68,7 @@ export type Database = {
       gelombang: {
         Row: {
           created_at: string
+          dipublikasikan: boolean
           id: string
           kuota: number
           mulai: string
@@ -80,6 +81,7 @@ export type Database = {
         }
         Insert: {
           created_at?: string
+          dipublikasikan?: boolean
           id?: string
           kuota: number
           mulai: string
@@ -92,6 +94,7 @@ export type Database = {
         }
         Update: {
           created_at?: string
+          dipublikasikan?: boolean
           id?: string
           kuota?: number
           mulai?: string
@@ -106,6 +109,7 @@ export type Database = {
       }
       jenis_berkas: {
         Row: {
+          aktif: boolean
           keterangan: string | null
           kode: string
           maks_bytes: number
@@ -115,6 +119,7 @@ export type Database = {
           wajib: boolean
         }
         Insert: {
+          aktif?: boolean
           keterangan?: string | null
           kode: string
           maks_bytes: number
@@ -124,6 +129,7 @@ export type Database = {
           wajib?: boolean
         }
         Update: {
+          aktif?: boolean
           keterangan?: string | null
           kode?: string
           maks_bytes?: number

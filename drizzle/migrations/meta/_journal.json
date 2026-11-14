@@ -15,6 +15,13 @@
       "when": 1794656471407,
       "tag": "0001_fix_ajukan_pendaftaran_daftar_kurang",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1794656708788,
+      "tag": "0002_scope_public_reads_gelombang_jenis_berkas",
+      "breakpoints": true
     }
   ]
 }

@@ -31,7 +31,7 @@ use the editor.
 
 ## Project rules
 
-- Waves (`gelombang`) and document requirements (`jenis_berkas`) live in the database and are read publicly via `src/lib/ppdb-public.functions.ts`; remaining static copy (fees, news, contacts) stays in `src/data/ppdb.ts` until panitia content management exists.
+- Waves (`gelombang`) and document requirements (`jenis_berkas`) live in the database and are read publicly via `src/lib/ppdb-public.functions.ts`; public RLS exposes only rows with `gelombang.dipublikasikan` / `jenis_berkas.aktif` (never `USING (true)`), staff and linked applicants see the rest; remaining static copy (fees, news, contacts) stays in `src/data/ppdb.ts` until panitia content management exists.
 - Wave open/closed status is computed from dates in WIB (`statusGelombang` in the UI, `gelombang_dibuka()` in the DB); never hardcode a status.
 - Site header/footer are rendered once in `src/routes/__root.tsx`; pages render only their own content.
 - Applicant workflow rules are enforced in Postgres (triggers on `pendaftaran`/`berkas_pendaftaran`, RPC `ajukan_pendaftaran`); the UI mirrors them in `src/lib/pendaftaran-rules.ts` only for feedback. Applicants can never change status/nomor/catatan directly.
